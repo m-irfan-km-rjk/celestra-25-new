@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+}
+
+model Register {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+
+  member_0        String
+  email_0         String
+  phone_number_0  String
+  college_0       String
+  year_0          String
+  branch_0        String
+  batch_0         String
+
+  eventname       String
+  isIEIMember     Boolean
+  tkm             Boolean  @default(false)
+  img_url         String
+  transactionid   String
+  ieimembershipid String?
+  amount          Float
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  member_1        String?
+  email_1         String?
+  phone_number_1  String?
+  college_1       String?
+  year_1          String?
+  branch_1        String?
+  batch_1         String?
+
+  member_2        String?
+  email_2         String?
+  phone_number_2  String?
+  college_2       String?
+  year_2          String?
+  branch_2        String?
+  batch_2         String?
+
+  member_3        String?
+  email_3         String?
+  phone_number_3  String?
+  college_3       String?
+  year_3          String?
+  branch_3        String?
+  batch_3         String?
+
+  member_4        String?
+  email_4         String?
+  phone_number_4  String?
+  college_4       String?
+  year_4          String?
+  branch_4        String?
+  batch_4         String?
+
+  member_5        String?
+  email_5         String?
+  phone_number_5  String?
+  college_5       String?
+  year_5          String?
+  branch_5        String?
+  batch_5         String?
+
+  member_6        String?
+  email_6         String?
+  phone_number_6  String?
+  college_6       String?
+  year_6          String?
+  branch_6        String?
+  batch_6         String?
+  referal_id      String?
+}
