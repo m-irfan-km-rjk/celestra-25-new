@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { useParams, useSearchParams } from 'next/navigation';
 import events from '@/util/Data/Event';
 import competitions from '@/util/Data/competitions';
@@ -19,7 +19,7 @@ interface Competition {
     qrcode: string[];
     amount: number[]
 }
-const Register = () => {
+const RegisterContent = () => {
     const params = useParams();
     const eventname = params?.eventname as string;
     const searchParams = useSearchParams();
@@ -503,6 +503,20 @@ const Register = () => {
                 )}
             </div>
         </div>
+    );
+};
+
+const Register = () => {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen bg-gray-900 text-gray-300 flex justify-center items-center p-6">
+                <div className="loader-container">
+                    <div className="loader"></div>
+                </div>
+            </div>
+        }>
+            <RegisterContent />
+        </Suspense>
     );
 };
 
