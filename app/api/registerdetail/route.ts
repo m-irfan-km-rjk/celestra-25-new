@@ -6,7 +6,6 @@ const corsHeaders = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-    'Access-Control-Allow-Credentials': 'true',
 };
 
 export async function OPTIONS() {
@@ -15,11 +14,10 @@ export async function OPTIONS() {
 
 export async function GET(req: NextRequest) {
     try {
-        // 1. Get query parameters using URLSearchParams
-        const { searchParams } = new URL(req.url);
+        // ✅ Correct way in App Router
+        const searchParams = req.nextUrl.searchParams;
         const eventname = searchParams.get('eventname');
 
-        // 2. Validate input
         if (!eventname) {
             return NextResponse.json(
                 { error: 'Event name is required as a query parameter' },
@@ -27,14 +25,10 @@ export async function GET(req: NextRequest) {
             );
         }
 
-        // 3. Fetch count from Prisma
         const registrationCount = await prisma.register.count({
-            where: {
-                eventname: eventname,
-            },
+            where: { eventname },
         });
 
-        // 4. Return response
         return NextResponse.json(
             {
                 eventname,
